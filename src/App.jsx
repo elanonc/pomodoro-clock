@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Pomodoro from './Components/Pomodoro';
-import TempoDePausa from './Components/TempoDePausa'
+import TempoDePausa from './Components/TempoDaSessao'
 
 function App() {
 

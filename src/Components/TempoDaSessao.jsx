@@ -1,19 +1,19 @@
 import React from 'react';
 import ArrowDownwardSharpIcon from '@mui/icons-material/ArrowDownwardSharp';
 import ArrowUpwardSharpIcon from '@mui/icons-material/ArrowUpwardSharp';
-import "./TempoDePausa.css"
+import "./TempoDaSessao.css"
 
-function TempoDePausa (props) {
+function TempoDaSessao (props) {
 
   return (
     <div className="container">
-      <h3> Tempo de Pausa </h3>
+      <h3> {props.title} </h3>
       <div className="time-sets">  
-        <button onClick={() => props.aumentaOuDiminuiPausa(-60)}>
+        <button onClick={() => props.aumentaOuDiminuiTempo(-60, props.type)}>
             <ArrowDownwardSharpIcon color="primary"/>
         </button>
         <h3>{props.formatoRelogio(props.time)}</h3>
-        <button onClick={() => props.aumentaOuDiminuiPausa(60)}>
+        <button onClick={() => props.aumentaOuDiminuiTempo(60, props.type)}>
             <ArrowUpwardSharpIcon color="primary"/>
         </button>
       </div>
@@ -21,4 +21,4 @@ function TempoDePausa (props) {
   )
 }
 
-export default TempoDePausa;
+export default TempoDaSessao;
