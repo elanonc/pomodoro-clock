@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TempoDaSessao from './TempoDaSessao';
 import PauseCircleFilledSharpIcon from '@mui/icons-material/PauseCircleFilledSharp';
 import PlayCircleFilledSharpIcon from '@mui/icons-material/PlayCircleFilledSharp';
@@ -9,6 +9,7 @@ function Pomodoro() {
   const [tempoDePausa, setTempoDePausa] = useState(5*60);
   const [tempoDeTrabalho, setTempoDeTrabalho] = useState(25*60);
   const [tempoPomodoro, setTempoPomodoro] = useState(false);
+  const [tipoDeSessao, setTipoDeSessao] = useState("trabalho");
 
   const formatoRelogio = (time) => {
     let minutes = Math.floor(time/60); 
@@ -35,14 +36,52 @@ function Pomodoro() {
     }
   }
 
-  const controlaRelogio = () => {
+  // A cada 1 segundo sera subtraido 1 
+  const timeout = setTimeout(() => {
+    if(tempo && tempoPomodoro){
+      setTempo(tempo - 1)
+    }
+  }, 1000);
 
+  const clock = () => {
+    if(tempoPomodoro){
+      timeout
+      resetTimer()
+    }else {
+      clearTimeout(timeout)
+    }
+  }
+
+  useEffect(() => {
+    clock()
+  }, [tempoPomodoro, tempo, timeout])
+
+  const resetTimer = () => {
+    if(!tempo && tipoDeSessao === "trabalho"){
+      setTempo(tempoDePausa)
+      setTipoDeSessao("pausa")
+      //audio.play()
+    }
+    if(!tempo && tipoDeSessao === "pausa"){
+      setTempo(tempoDeTrabalho)
+      setTipoDeSessao("trabalho")
+      //audio.pause()
+     // audio.currentTime = 0;
+    }
+  } 
+
+  const handlePlay = () => {
+    clearTimeout(timeout); // limpa o timeout encapsulado anteriormente
+    setTempoPomodoro(!tempoPomodoro); // e atualiza as mudanças
   }
 
   const resetaRelogio = () => {
+    clearTimeout(timeout);
     setTempo(25*60);
     setTempoDePausa(5*60);
     setTempoDeTrabalho(25*60);
+    setTipoDeSessao("trabalho");
+    setTempoPomodoro(false);
   }
 
   return (
@@ -63,7 +102,7 @@ function Pomodoro() {
           formatoRelogio={formatoRelogio}
         />
         <h2> {formatoRelogio(tempo)} </h2>
-        <button onClick={controlaRelogio}>
+        <button onClick={handlePlay}>
           { tempoPomodoro ? (
               <PauseCircleFilledSharpIcon color="primary"/>
             ) : (
