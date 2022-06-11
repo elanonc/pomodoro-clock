@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import TempoDaSessao from './TempoDaSessao';
 import PauseCircleFilledSharpIcon from '@mui/icons-material/PauseCircleFilledSharp';
 import PlayCircleFilledSharpIcon from '@mui/icons-material/PlayCircleFilledSharp';
+import "./Pomodoro.css"
+
 
 function Pomodoro() {
 
@@ -86,33 +88,36 @@ function Pomodoro() {
 
   return (
     <div>
-        <h1>POMODORO</h1>
-        <TempoDaSessao
-          title={"Tempo de Pausa"}
-          type={"pausa"}
-          time={tempoDePausa}
-          aumentaOuDiminuiTempo={aumentaOuDiminuiTempo} 
-          formatoRelogio={formatoRelogio}
-        />
-        <TempoDaSessao
-          title={"Tempo de Trabalho"}
-          type={"trabalho"}
-          time={tempoDeTrabalho}
-          aumentaOuDiminuiTempo={aumentaOuDiminuiTempo} 
-          formatoRelogio={formatoRelogio}
-        />
-        <h2> {formatoRelogio(tempo)} </h2>
-        <button onClick={handlePlay}>
-          { tempoPomodoro ? (
-              <PauseCircleFilledSharpIcon color="primary"/>
-            ) : (
-              <PlayCircleFilledSharpIcon color="primary"/>
-            ) 
-          } 
-        </button>
-        <button onClick={resetaRelogio}>
-          <i className="material-icons">autorenew</i>
-        </button>
+        <h1> <strong>Pomodoro App</strong></h1>
+        <div className="container-clock">
+          <TempoDaSessao
+            title={"Tempo de Pausa"}
+            type={"pausa"}
+            time={tempoDePausa}
+            aumentaOuDiminuiTempo={aumentaOuDiminuiTempo} 
+            formatoRelogio={formatoRelogio}
+          />
+          <TempoDaSessao
+            title={"Tempo de Trabalho"}
+            type={"trabalho"}
+            time={tempoDeTrabalho}
+            aumentaOuDiminuiTempo={aumentaOuDiminuiTempo} 
+            formatoRelogio={formatoRelogio}
+          />
+        </div>
+        <div className="clock">
+          <h2 id="pomodoro text-center"> {formatoRelogio(tempo)} </h2>
+          <button className="btn btn-lg btn-secondary" onClick={handlePlay}>
+            { tempoPomodoro ? 
+              <i className="material-icons">pause_circle_filled</i>
+               :
+              <i className="material-icons">play_circle_filled</i>
+            } 
+          </button>
+          <button className="btn btn-secondary btn-lg" onClick={resetaRelogio}>
+            <i className="material-icons">autorenew</i>
+          </button>
+        </div>
     </div>
   )
 }
