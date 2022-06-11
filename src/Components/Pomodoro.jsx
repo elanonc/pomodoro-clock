@@ -90,7 +90,7 @@ function Pomodoro() {
 
   return (
     <div>
-        <h1> <strong>Pomodoro App</strong> </h1>
+      <h1> <strong>Pomodoro App</strong></h1>
         <div className="container-clock">
           <TempoDaSessao
             title={"Tempo de Pausa"}
