@@ -1,6 +1,18 @@
-.time-sets {
+.container-section{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 700px;
+}
+
+.center-align {
+    display: grid;
+    
+    justify-items: center;
     align-items: center;
 }
+
+.btn-clock {
+    display: flex;
+    justify-content: space-between;
+}
+
