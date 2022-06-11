@@ -1,9 +1,9 @@
 .material-icons {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 body {
-  display:flex; flex-direction:column; justify-content:center;
-  min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    min-height:100vh;
 }

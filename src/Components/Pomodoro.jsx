@@ -43,20 +43,20 @@ function Pomodoro() {
     }
   }, 1000);
 
-  const clock = () => {
+  const relogio = () => {
     if(tempoPomodoro){
       timeout;
-      resetTimer();
+      reseta();
     }else {
       clearTimeout(timeout);
     }
   }
 
   useEffect(() => {
-    clock();
+    relogio();
   }, [tempoPomodoro, tempo, timeout])
 
-  const resetTimer = () => {
+  const reseta = () => {
     const audio = document.getElementById("alarme");
     if(!tempo && tipoDeSessao === "trabalho"){
       setTempo(tempoDePausa);
