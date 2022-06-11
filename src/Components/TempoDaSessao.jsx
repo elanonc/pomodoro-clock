@@ -1,6 +1,4 @@
 import React from 'react';
-import ArrowDownwardSharpIcon from '@mui/icons-material/ArrowDownwardSharp';
-import ArrowUpwardSharpIcon from '@mui/icons-material/ArrowUpwardSharp';
 import "./TempoDaSessao.css";
 
 function TempoDaSessao (props) {

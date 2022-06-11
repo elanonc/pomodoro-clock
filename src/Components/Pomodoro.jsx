@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import TempoDaSessao from './TempoDaSessao';
-import PauseCircleFilledSharpIcon from '@mui/icons-material/PauseCircleFilledSharp';
-import PlayCircleFilledSharpIcon from '@mui/icons-material/PlayCircleFilledSharp';
 import "./Pomodoro.css"
 
 
@@ -41,34 +39,35 @@ function Pomodoro() {
   // A cada 1 segundo sera subtraido 1 
   const timeout = setTimeout(() => {
     if(tempo && tempoPomodoro){
-      setTempo(tempo - 1)
+      setTempo(tempo - 1);
     }
   }, 1000);
 
   const clock = () => {
     if(tempoPomodoro){
-      timeout
-      resetTimer()
+      timeout;
+      resetTimer();
     }else {
-      clearTimeout(timeout)
+      clearTimeout(timeout);
     }
   }
 
   useEffect(() => {
-    clock()
+    clock();
   }, [tempoPomodoro, tempo, timeout])
 
   const resetTimer = () => {
+    const audio = document.getElementById("alarme");
     if(!tempo && tipoDeSessao === "trabalho"){
-      setTempo(tempoDePausa)
-      setTipoDeSessao("pausa")
-      //audio.play()
+      setTempo(tempoDePausa);
+      setTipoDeSessao("pausa");
+      audio.play();
     }
     if(!tempo && tipoDeSessao === "pausa"){
-      setTempo(tempoDeTrabalho)
-      setTipoDeSessao("trabalho")
-      //audio.pause()
-     // audio.currentTime = 0;
+      setTempo(tempoDeTrabalho);
+      setTipoDeSessao("trabalho");
+      audio.pause();
+      audio.currentTime = 0;
     }
   } 
 
@@ -84,11 +83,14 @@ function Pomodoro() {
     setTempoDeTrabalho(25*60);
     setTipoDeSessao("trabalho");
     setTempoPomodoro(false);
+    const audio = document.getElementById("alarme");
+    audio.pause();
+    audio.currentTime = 0;
   }
 
   return (
     <div>
-        <h1> <strong>Pomodoro App</strong></h1>
+        <h1> <strong>Pomodoro App</strong> </h1>
         <div className="container-clock">
           <TempoDaSessao
             title={"Tempo de Pausa"}
