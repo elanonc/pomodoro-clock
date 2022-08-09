@@ -36,7 +36,6 @@ function Pomodoro() {
     }
   }
 
-  // A cada 1 segundo sera subtraido 1 
   const timeout = setTimeout(() => {
     if(tempo && tempoPomodoro){
       setTempo(tempo - 1);
@@ -90,7 +89,7 @@ function Pomodoro() {
 
   return (
     <div>
-      <h1> <strong>Pomodoro App</strong></h1>
+          <h1 className="title"> Temporizador Pomodoro </h1>
         <div className="container-clock">
           <TempoDaSessao
             title={"Tempo de Pausa"}
@@ -108,7 +107,7 @@ function Pomodoro() {
           />
         </div>
         <div className="clock">
-          <h2 id="pomodoro text-center"> {formatoRelogio(tempo)} </h2>
+          <h2> {formatoRelogio(tempo)} </h2>
           <button className="btn btn-lg btn-secondary" onClick={handlePlay}>
             { tempoPomodoro ? 
               <i className="material-icons">pause_circle_filled</i>

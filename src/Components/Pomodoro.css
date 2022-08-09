@@ -1,5 +1,12 @@
 body {
     margin:auto;
+    background: rgb(177,238,174);
+}
+
+.title {
+    text-transform: uppercase;
+    padding-bottom: 1rem;
+    font-weight: bold;
 }
 
 .container-clock {
@@ -14,6 +21,10 @@ body {
 .clock {
     margin-top: 3rem;
 }
+
+.block h2 {
+    margin-bottom: 6rem;
+} 
 
 .clock > button {
     margin-left: 1rem;
